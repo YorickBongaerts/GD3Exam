@@ -1,10 +1,12 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerMove : MonoBehaviour
 {
     private float _moveSpeed = 10f;
     private float _jumpSpeed = 750f;
+    private float _GroundHeight;
     private bool _isGrounded = true;
     private bool _isJumping = false;
     private Vector3 _moveDirection;
@@ -26,18 +28,38 @@ public class PlayerMove : MonoBehaviour
     void Update()
     {
         Move();
+        CheckPlayerHeightFromGround();
     }
     void Move()
     {
         _rb.AddForce(_moveDirection.normalized * _moveSpeed, ForceMode.Acceleration);
     }
-    public void Jump()
+    void Jump()
     {
         if (_isGrounded)
         {
             _isJumping = true;
             _rb.AddForce(this.gameObject.transform.up * _jumpSpeed, ForceMode.Acceleration);
             _isGrounded = false;
+        }
+    }
+    void CheckPlayerHeightFromGround()
+    {
+        Ray ray = new Ray(this.gameObject.transform.position, Vector3.down);
+        RaycastHit RaycastHit;
+        this.gameObject.GetComponent<Collider>().Raycast(ray, out RaycastHit, 20);
+        _GroundHeight = RaycastHit.distance;
+        if (_GroundHeight + 1 > 5)
+        {
+            Debug.Log("slow down");
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == 8)
+        {
+            _isGrounded = true;
+            _isJumping = false;
         }
     }
 }
