@@ -5,10 +5,12 @@ using UnityEngine.InputSystem;
 public class PlayerMove : MonoBehaviour
 {
     private float _moveSpeed = 10f;
-    private float _jumpSpeed = 750f;
+    private float _jumpSpeed = 500f;
+    private float _jumpHeight = 6f;
     private float _GroundHeight;
     private bool _isGrounded = true;
     private bool _isJumping = false;
+    private bool _loweredGravity = false;
     private Vector3 _moveDirection;
     private Rigidbody _rb;
     // Start is called before the first frame update
@@ -45,13 +47,16 @@ public class PlayerMove : MonoBehaviour
     }
     void CheckPlayerHeightFromGround()
     {
-        Ray ray = new Ray(this.gameObject.transform.position, Vector3.down);
-        RaycastHit RaycastHit;
-        this.gameObject.GetComponent<Collider>().Raycast(ray, out RaycastHit, 20);
-        _GroundHeight = RaycastHit.distance;
-        if (_GroundHeight + 1 > 5)
+        if (gameObject.transform.position.y > _jumpHeight-0.5f && !_loweredGravity)
         {
-            Debug.Log("slow down");
+            _rb.velocity = new Vector3(0, 1, 0);
+            GravityManager.ChangeGravity(-8f);
+            _loweredGravity = true;
+        }
+        if (_isGrounded && _loweredGravity)
+        {
+            GravityManager.ChangeGravity(8f);
+            _loweredGravity = false;
         }
     }
     private void OnTriggerEnter(Collider other)
