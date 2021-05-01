@@ -13,20 +13,21 @@ public class BulletScript : MonoBehaviour
         _timer += Time.deltaTime;
         if (_timer >= 2f / _bulletSpeed)
         {
-            Destroy(gameObject);
+            //this.gameObject.transform.position = Vector3.zero;
+            //gameObject.SetActive(false);
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.GetComponent<BaseEnemyBehaviour>())
-        {
-            other.lives--;
-            if (other.gameObject.GetComponent<MeshRenderer>().material.name == gameObject.GetComponent<MeshRenderer>().material.name)
-            {
-                other.lives--;
-            }
-            Destroy(gameObject);
-        }
-    }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.gameObject.GetComponent<BaseEnemyBehaviour>())
+    //    {
+    //        other.lives--;
+    //        if (other.gameObject.GetComponent<MeshRenderer>().material.name == gameObject.GetComponent<MeshRenderer>().material.name)
+    //        {
+    //            other.lives--;
+    //        }
+    //        Destroy(gameObject);
+    //    }
+    //}
 }

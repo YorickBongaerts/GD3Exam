@@ -34,7 +34,7 @@ public class PlayerMove : MonoBehaviour
     }
     void Move()
     {
-        _rb.AddForce(_moveDirection.normalized * _moveSpeed, ForceMode.Acceleration);
+            _rb.AddForce(_moveDirection.normalized * _moveSpeed, ForceMode.Acceleration);
     }
     void Jump()
     {
