@@ -24,13 +24,23 @@ public class PlayerMove : MonoBehaviour
     }
     public void OnJump(InputAction.CallbackContext context)
     {
-        Jump();
+        //if (_isJumping && !_loweredGravity)
+        //{
+        //    _rb.velocity = new Vector3(0, 1, 0);
+        //    GravityManager.ChangeGravity(-8f);
+        //    _loweredGravity = true;
+        //}
+        //else
+        //{
+            Jump();
+        //}
     }
     // Update is called once per frame
     void Update()
     {
         Move();
-        CheckPlayerHeightFromGround();
+        //GroundReset();
+        //Debug.Log(Physics.gravity);
     }
     void Move()
     {
@@ -45,20 +55,14 @@ public class PlayerMove : MonoBehaviour
             _isGrounded = false;
         }
     }
-    void CheckPlayerHeightFromGround()
-    {
-        if (gameObject.transform.position.y > _jumpHeight-0.5f && !_loweredGravity)
-        {
-            _rb.velocity = new Vector3(0, 1, 0);
-            GravityManager.ChangeGravity(-8f);
-            _loweredGravity = true;
-        }
-        if (_isGrounded && _loweredGravity)
-        {
-            GravityManager.ChangeGravity(8f);
-            _loweredGravity = false;
-        }
-    }
+    //void GroundReset()
+    //{
+    //    if (_isGrounded && _loweredGravity)
+    //    {
+    //        GravityManager.ChangeGravity(8f);
+    //        _loweredGravity = false;
+    //    }
+    //}
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == 8)
