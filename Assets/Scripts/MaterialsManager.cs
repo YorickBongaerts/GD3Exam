@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -7,8 +8,10 @@ public class MaterialsManager : MonoBehaviour
 {
     public bool ShouldSwap;
     public Material SwapToMaterial;
+    public GameObject SwapToObject;
     private int _pressedButton;
     public List<Material> _bulletMaterials = new List<Material>();
+    public GameObject[] _collectedPowers = new GameObject[8];
     private void Update()
     {
         SwapInput();
@@ -52,10 +55,41 @@ public class MaterialsManager : MonoBehaviour
     }
     void SwapMaterial()
     {
+        if (_collectedPowers[_pressedButton - 1] != null)
+        {
+            var powerUp = _collectedPowers[_pressedButton - 1];
+            powerUp.SetActive(true);
+            UnequipPower(powerUp);
+        }
+        _collectedPowers[_pressedButton - 1] = SwapToObject;
         _bulletMaterials[_pressedButton - 1] = SwapToMaterial;
         SwapToMaterial = null;
+        SwapToObject = null;
         _pressedButton = 0;
         Debug.Log("swapped");
         Time.timeScale = 1;
+    }
+
+    private void UnequipPower(GameObject powerToDelete)
+    {
+        switch (powerToDelete.GetComponent<MeshRenderer>().material.name)
+        {
+            case "MAT_Red (instance)":
+                powerToDelete.GetComponent<RedPowerupScript>().UnApplyExtraPower();
+                Debug.Log("Deleted Red");
+                break;
+            case "MAT_Blue (instance)":
+                powerToDelete.GetComponent<BluePowerupScript>().UnApplyExtraPower();
+                Debug.Log("Deleted Blue");
+                break;
+            case "MAT_White (instance)":
+                powerToDelete.GetComponent<WhitePowerupScript>().UnApplyExtraPower();
+                Debug.Log("Deleted White");
+                break;
+            case "MAT_Brown (instance)":
+                powerToDelete.GetComponent<BrownPowerupScript>().UnApplyExtraPower();
+                Debug.Log("Deleted Brown");
+                break;
+        }
     }
 }

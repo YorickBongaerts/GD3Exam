@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerMove : MonoBehaviour
 {
-    private float _moveSpeed = 10f;
+    public float _moveSpeed = 10f;
     private float _jumpSpeed = 500f;
     private float _jumpHeight = 6f;
     private float _GroundHeight;

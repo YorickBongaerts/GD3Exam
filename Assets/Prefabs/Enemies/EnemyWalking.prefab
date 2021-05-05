@@ -111,10 +111,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HP: 10
   PowerUps:
-  - {fileID: 1226973029570741771, guid: a6922ae84828c124188cc1bea76498ea, type: 3}
-  - {fileID: 1226973029570741771, guid: a6922ae84828c124188cc1bea76498ea, type: 3}
-  - {fileID: 1226973029570741771, guid: a6922ae84828c124188cc1bea76498ea, type: 3}
-  - {fileID: 1226973029570741771, guid: a6922ae84828c124188cc1bea76498ea, type: 3}
+  - {fileID: 3048368487449773350, guid: 1f5660737a2ea3442963a4d9e8d6b39a, type: 3}
+  - {fileID: 5157891409176267489, guid: 95f69480c9c36d445ac8d81fc798f0f3, type: 3}
+  - {fileID: 6093830850969926195, guid: b73ce3101dad00e4d836992a34bbf954, type: 3}
+  - {fileID: 2288665148755782197, guid: 63dc38f2cdd26474a846233850504e60, type: 3}
   player: {fileID: 0}
 --- !u!195 &4737332261847456265
 NavMeshAgent:
