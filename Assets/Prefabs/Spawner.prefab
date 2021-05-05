@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4111648764435662739
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7843373481276409684}
+  - component: {fileID: 6192377145288219397}
+  m_Layer: 0
+  m_Name: Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7843373481276409684
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4111648764435662739}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 187.5096, y: -14.388256, z: 113.70969}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6192377145288219397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4111648764435662739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52870eedd58238d4bab4d3539badffd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amountOfEnemies: 0
+  enemyMax: 10
+  enemyPrefabs:
+  - {fileID: 8292231992590669342, guid: 7059054d380384a4285fc8341f56eb40, type: 3}
+  - {fileID: 1009383468591760914, guid: 4ae80dcb9fd3b9043ba499c0a0631f49, type: 3}
+  - {fileID: 638094134810640826, guid: 4a9fb1a937d9d334b90803affde33394, type: 3}
+  - {fileID: 2847999601419705859, guid: 9a7349f28c804d34080bb5ade1ab515c, type: 3}
+  - {fileID: 4737332261847456263, guid: 046f59ef788abb3499bea15e916551ed, type: 3}
+  - {fileID: 6649298950593385536, guid: 2a10f9449d166284388e0555a475b6e4, type: 3}
+  enemyMaterials:
+  - {fileID: 2100000, guid: 7b85665f812f0c042966ffdf4a4ac0ff, type: 2}
+  - {fileID: 2100000, guid: b4a2c7b48760bfa4b819c7dc896a0f3a, type: 2}
+  - {fileID: 2100000, guid: 74cfa7d7cd4e7674e86992b870ca8c82, type: 2}
+  - {fileID: 2100000, guid: 00ed8396a75ff8d4890a87046217eb09, type: 2}
+  spawnerBounds:
+  - m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
+  - m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
+  - m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
+  - m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}

@@ -1,0 +1,10 @@
+ManifestFileVersion: 0
+CRC: 1982851452
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: bulletheaven_info
+      Dependencies: {}
+    Info_1:
+      Name: bulletheaven
+      Dependencies: {}

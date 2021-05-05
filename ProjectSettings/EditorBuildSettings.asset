@@ -6,9 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/StartScene.unity
+    path: Assets/Scenes/bulletheaven_info.unity
     guid: e400c635132da8846b38b709fdcc71d0
   - enabled: 1
-    path: Assets/Scenes/bulletheaven_info.unity
+    path: Assets/Scenes/bulletheaven_GameScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects: {}

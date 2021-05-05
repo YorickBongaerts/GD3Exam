@@ -1,0 +1,25 @@
+ManifestFileVersion: 0
+CRC: 4115574085
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 9d0d7bbb130b0d3df8658cfadaaefce3
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 0abadcc86ce200135b4d55dcc84f64c8
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 49
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: b993d0c3dc764684093d60fda4fdad2b, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/bulletheaven_info.asset
+Dependencies: []
