@@ -1,9 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerMove : MonoBehaviour
 {
+    public int HP = 50;
     public float _moveSpeed = 10f;
     private float _jumpSpeed = 500f;
     private float _jumpHeight = 6f;
@@ -13,38 +16,67 @@ public class PlayerMove : MonoBehaviour
     private bool _loweredGravity = false;
     private Vector3 _moveDirection;
     private Rigidbody _rb;
-    // Start is called before the first frame update
+    private MaterialsManager _matManager;
+
+    #region Unity
     void Start()
     {
         _rb = this.gameObject.GetComponent<Rigidbody>();
+        _matManager = FindObjectOfType<MaterialsManager>();
     }
-    public void OnMove(InputAction.CallbackContext context)
-    {
-        _moveDirection = new Vector3(context.ReadValue<Vector2>().x, 0, context.ReadValue<Vector2>().y);
-    }
-    public void OnJump(InputAction.CallbackContext context)
-    {
-        //if (_isJumping && !_loweredGravity)
-        //{
-        //    _rb.velocity = new Vector3(0, 1, 0);
-        //    GravityManager.ChangeGravity(-8f);
-        //    _loweredGravity = true;
-        //}
-        //else
-        //{
-            Jump();
-        //}
-    }
-    // Update is called once per frame
     void Update()
     {
         Move();
         //GroundReset();
         //Debug.Log(Physics.gravity);
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == 8)
+        {
+            _isGrounded = true;
+            _isJumping = false;
+        }
+        if (ObjectPooler.Instance.poolDictionary["Bullets"].Contains(other.gameObject))
+        {
+            HP--;
+            StartCoroutine(CheckForLoss());
+        }
+    }
+
+    
+    #endregion Unity
+
+    #region Input
+    public void OnMove(InputAction.CallbackContext context)
+    {
+        _moveDirection = new Vector3(context.ReadValue<Vector2>().x, 0, context.ReadValue<Vector2>().y);
+    }
+    public void OnJump(InputAction.CallbackContext context)
+    {
+        if (!_isJumping)
+        {
+            Jump();
+        }
+        else if (_isJumping && !_loweredGravity)
+        {
+            foreach (GameObject power in _matManager._collectedPowers)
+            {
+                if (power != null || power.GetComponent<MeshRenderer>().material.name == "MAT_White (Instance)")
+                {
+                    _rb.velocity = new Vector3(0, 1, 0);
+                    GravityManager.ChangeGravity(-8f);
+                    _loweredGravity = true;
+                }
+            }
+        }
+
+    }
+    #endregion Input
+
     void Move()
     {
-            _rb.AddForce(_moveDirection.normalized * _moveSpeed, ForceMode.Acceleration);
+        _rb.AddForce(_moveDirection.normalized * _moveSpeed, ForceMode.Acceleration);
     }
     void Jump()
     {
@@ -63,12 +95,12 @@ public class PlayerMove : MonoBehaviour
     //        _loweredGravity = false;
     //    }
     //}
-    private void OnTriggerEnter(Collider other)
+    private IEnumerator CheckForLoss()
     {
-        if (other.gameObject.layer == 8)
+        if (HP <= 0)
         {
-            _isGrounded = true;
-            _isJumping = false;
+            yield return new WaitForEndOfFrame();
+            SceneManager.LoadScene(2);
         }
     }
 }
