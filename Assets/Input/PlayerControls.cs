@@ -41,6 +41,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""EarthPower"",
+                    ""type"": ""Button"",
+                    ""id"": ""95678eb5-3448-455f-b124-f00257589fae"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -120,6 +128,17 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""action"": ""Shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4668b875-6864-40ea-98fd-cfbe52eabcaf"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""EarthPower"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -177,6 +196,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_PlayerMap_Walking = m_PlayerMap.FindAction("Walking", throwIfNotFound: true);
         m_PlayerMap_Jump = m_PlayerMap.FindAction("Jump", throwIfNotFound: true);
         m_PlayerMap_Shoot = m_PlayerMap.FindAction("Shoot", throwIfNotFound: true);
+        m_PlayerMap_EarthPower = m_PlayerMap.FindAction("EarthPower", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Move = m_UI.FindAction("Move", throwIfNotFound: true);
@@ -233,6 +253,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_PlayerMap_Walking;
     private readonly InputAction m_PlayerMap_Jump;
     private readonly InputAction m_PlayerMap_Shoot;
+    private readonly InputAction m_PlayerMap_EarthPower;
     public struct PlayerMapActions
     {
         private @PlayerControls m_Wrapper;
@@ -240,6 +261,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @Walking => m_Wrapper.m_PlayerMap_Walking;
         public InputAction @Jump => m_Wrapper.m_PlayerMap_Jump;
         public InputAction @Shoot => m_Wrapper.m_PlayerMap_Shoot;
+        public InputAction @EarthPower => m_Wrapper.m_PlayerMap_EarthPower;
         public InputActionMap Get() { return m_Wrapper.m_PlayerMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -258,6 +280,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Shoot.started -= m_Wrapper.m_PlayerMapActionsCallbackInterface.OnShoot;
                 @Shoot.performed -= m_Wrapper.m_PlayerMapActionsCallbackInterface.OnShoot;
                 @Shoot.canceled -= m_Wrapper.m_PlayerMapActionsCallbackInterface.OnShoot;
+                @EarthPower.started -= m_Wrapper.m_PlayerMapActionsCallbackInterface.OnEarthPower;
+                @EarthPower.performed -= m_Wrapper.m_PlayerMapActionsCallbackInterface.OnEarthPower;
+                @EarthPower.canceled -= m_Wrapper.m_PlayerMapActionsCallbackInterface.OnEarthPower;
             }
             m_Wrapper.m_PlayerMapActionsCallbackInterface = instance;
             if (instance != null)
@@ -271,6 +296,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Shoot.started += instance.OnShoot;
                 @Shoot.performed += instance.OnShoot;
                 @Shoot.canceled += instance.OnShoot;
+                @EarthPower.started += instance.OnEarthPower;
+                @EarthPower.performed += instance.OnEarthPower;
+                @EarthPower.canceled += instance.OnEarthPower;
             }
         }
     }
@@ -321,6 +349,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnWalking(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
+        void OnEarthPower(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

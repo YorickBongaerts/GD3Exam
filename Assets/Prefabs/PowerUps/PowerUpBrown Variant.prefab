@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   matManager: {fileID: 0}
   player: {fileID: 0}
+  Cube: {fileID: 6819043569655010029, guid: bc949cfe2d4c6244190c760a1aa85249, type: 3}
 --- !u!1001 &5014397164653935672
 PrefabInstance:
   m_ObjectHideFlags: 0

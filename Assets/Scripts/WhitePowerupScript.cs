@@ -10,6 +10,9 @@ public class WhitePowerupScript : PowerUpBase
     }
     public override void UnApplyExtraPower()
     {
-        Debug.Log("white gone");
+        GravityManager.ResetGravity();
+        Debug.Log("RESET");
+        player.LoweredGravity = false;
+        Destroy(gameObject);
     }
 }

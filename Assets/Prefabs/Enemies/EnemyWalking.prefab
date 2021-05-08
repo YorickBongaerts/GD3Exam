@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4737332261847456262}
   - component: {fileID: 4737332261847456265}
   - component: {fileID: 1665359688064950693}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: EnemyWalking
   m_TagString: Untagged
   m_Icon: {fileID: 0}

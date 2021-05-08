@@ -45,4 +45,18 @@ public class BaseEnemyBehaviour : MonoBehaviour
             }
         }
     }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.layer == 9)
+        {
+            agent.speed = 0;
+        }
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.layer == 9)
+        {
+            agent.speed = 3.5f;
+        }
+    }
 }

@@ -6,10 +6,12 @@ public class BluePowerupScript : PowerUpBase
 {
     public override void ApplyExtraPower()
     {
-        Debug.Log("blue");
+        matManager.MaxBlueTime += 1;
+        matManager.CanUseBlue = true;
     }
     public override void UnApplyExtraPower()
     {
-        Debug.Log("blue gone");
+        matManager.MaxBlueTime -= 1;
+        Destroy(gameObject);
     }
 }

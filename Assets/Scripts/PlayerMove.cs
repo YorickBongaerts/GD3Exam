@@ -13,16 +13,18 @@ public class PlayerMove : MonoBehaviour
     private float _GroundHeight;
     private bool _isGrounded = true;
     private bool _isJumping = false;
-    private bool _loweredGravity = false;
+    public bool LoweredGravity = false;
     private Vector3 _moveDirection;
     private Rigidbody _rb;
     private MaterialsManager _matManager;
+    public GameObject _protectionSphere;
 
     #region Unity
     void Start()
     {
         _rb = this.gameObject.GetComponent<Rigidbody>();
         _matManager = FindObjectOfType<MaterialsManager>();
+        _protectionSphere = gameObject.transform.GetChild(1).gameObject;
     }
     void Update()
     {
@@ -58,19 +60,36 @@ public class PlayerMove : MonoBehaviour
         {
             Jump();
         }
-        else if (_isJumping && !_loweredGravity)
+        else if (_isJumping && !LoweredGravity)
         {
             foreach (GameObject power in _matManager._collectedPowers)
             {
-                if (power != null || power.GetComponent<MeshRenderer>().material.name == "MAT_White (Instance)")
+                if (power != null && power.GetComponent<MeshRenderer>().sharedMaterial.name == "MAT_White (Instance)")
                 {
                     _rb.velocity = new Vector3(0, 1, 0);
-                    GravityManager.ChangeGravity(-8f);
-                    _loweredGravity = true;
+                    GravityManager.ChangeGravity(-2f);
+                    LoweredGravity = true;
                 }
             }
         }
-
+    }
+    public void OnPowerInput(InputAction.CallbackContext context)
+    {
+        foreach (GameObject power in _matManager._collectedPowers)
+        {
+            if (power != null && power.GetComponent<MeshRenderer>().sharedMaterial.name == "MAT_Brown (Instance)" && _matManager.BrownUses > 0)
+            {
+                power.GetComponent<BrownPowerupScript>().ApplyExtraPower();
+            }
+            if (power != null && power.GetComponent<MeshRenderer>().sharedMaterial.name == "MAT_Blue (Instance)" && _matManager.CanUseBlue)
+            {
+                if (_matManager.CanUseBlue)
+                {
+                    _protectionSphere.SetActive(true);
+                    StartCoroutine(_matManager.BlueTimer());
+                }
+            }
+        }
     }
     #endregion Input
 

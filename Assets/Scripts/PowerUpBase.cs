@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class PowerUpBase : MonoBehaviour
 {
-    [SerializeField] private MaterialsManager matManager;
-    [SerializeField] private GameObject player;
+    [SerializeField] public MaterialsManager matManager;
+    [SerializeField] public PlayerMove player;
     private void Start()
     {
         matManager = FindObjectOfType<MaterialsManager>();
-        player = FindObjectOfType<PlayerMove>().gameObject;
+        player = FindObjectOfType<PlayerMove>();
     }
     public virtual void ApplyExtraPower()
     {
@@ -19,9 +19,9 @@ public class PowerUpBase : MonoBehaviour
     {
 
     }
-    private void OnTriggerEnter(Collider other)
+    public virtual void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject == player)
+        if (other.gameObject == player.gameObject)
         {
             matManager.SwapToObject = gameObject;
             matManager.SwapToMaterial = this.gameObject.GetComponent<MeshRenderer>().material;

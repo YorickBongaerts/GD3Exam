@@ -302,6 +302,18 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: c194bead-aafb-44f6-a3ef-01e7050d8e3c
     m_ActionName: PlayerMap/Shoot[/XInputControllerWindows/rightTrigger]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 95678eb5-3448-455f-b124-f00257589fae
+    m_ActionName: PlayerMap/EarthPower[/XInputControllerWindows/buttonWest]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ffd8eef3-2f5b-4b87-b0cf-22c30b129b49
+    m_ActionName: UI/Move[/XInputControllerWindows/leftStick]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 472b8a5b-5e0c-40ca-96a0-7fa29c1ca3f6
+    m_ActionName: UI/Submit[/XInputControllerWindows/buttonSouth]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: PlayerMap
@@ -319,7 +331,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1b4171bce934d04793278d4bfa0a685, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HP: 50
   _moveSpeed: 10
+  LoweredGravity: 0
 --- !u!65 &3448601544366765725
 BoxCollider:
   m_ObjectHideFlags: 0

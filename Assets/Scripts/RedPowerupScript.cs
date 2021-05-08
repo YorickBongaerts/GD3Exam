@@ -6,12 +6,13 @@ public class RedPowerupScript : PowerUpBase
 {
     public override void ApplyExtraPower()
     {
-        FindObjectOfType<PlayerMove>()._moveSpeed *= 2;
+        player._moveSpeed *= 2;
         Debug.Log("red");
     }
     public override void UnApplyExtraPower()
     {
-        FindObjectOfType<PlayerMove>()._moveSpeed /= 2;
+        player._moveSpeed /= 2;
         Debug.Log("red gone");
+        Destroy(gameObject);
     }
 }

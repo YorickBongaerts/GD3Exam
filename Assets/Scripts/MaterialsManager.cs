@@ -6,12 +6,16 @@ using UnityEngine.InputSystem;
 
 public class MaterialsManager : MonoBehaviour
 {
+    [SerializeField] private PlayerMove player;
     public bool ShouldSwap;
     public Material SwapToMaterial;
     public GameObject SwapToObject;
     private int _pressedButton;
     public List<Material> _bulletMaterials = new List<Material>();
     public GameObject[] _collectedPowers = new GameObject[8];
+    public int BrownUses = 0;
+    public int MaxBlueTime = 2;
+    public bool CanUseBlue;
     private void Update()
     {
         SwapInput();
@@ -72,24 +76,46 @@ public class MaterialsManager : MonoBehaviour
 
     private void UnequipPower(GameObject powerToDelete)
     {
-        switch (powerToDelete.GetComponent<MeshRenderer>().material.name)
+        switch (powerToDelete.GetComponent<MeshRenderer>().sharedMaterial.name)
         {
-            case "MAT_Red (instance)":
+            case "MAT_Red (Instance)":
                 powerToDelete.GetComponent<RedPowerupScript>().UnApplyExtraPower();
                 Debug.Log("Deleted Red");
                 break;
-            case "MAT_Blue (instance)":
+            case "MAT_Blue (Instance)":
                 powerToDelete.GetComponent<BluePowerupScript>().UnApplyExtraPower();
                 Debug.Log("Deleted Blue");
                 break;
-            case "MAT_White (instance)":
+            case "MAT_White (Instance)":
                 powerToDelete.GetComponent<WhitePowerupScript>().UnApplyExtraPower();
                 Debug.Log("Deleted White");
                 break;
-            case "MAT_Brown (instance)":
+            case "MAT_Brown (Instance)":
                 powerToDelete.GetComponent<BrownPowerupScript>().UnApplyExtraPower();
                 Debug.Log("Deleted Brown");
                 break;
+            case "Lit (Instance)":
+                Destroy(powerToDelete.gameObject);
+                Debug.Log("ez?");
+                break;
         }
+    }
+
+    public IEnumerator BlueTimer()
+    {
+        if (CanUseBlue)
+        {
+            yield return new WaitForSeconds(MaxBlueTime);
+            CanUseBlue = false;
+            player._protectionSphere.SetActive(false);
+            yield return null;
+        }
+        if (!CanUseBlue)
+        {
+            yield return new WaitForSeconds(5);
+            CanUseBlue = true;
+            yield return null;
+        }
+        yield return null;
     }
 }
