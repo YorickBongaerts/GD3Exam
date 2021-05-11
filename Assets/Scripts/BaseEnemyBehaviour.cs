@@ -31,6 +31,7 @@ public class BaseEnemyBehaviour : MonoBehaviour
                 Instantiate(PowerUps[UnityEngine.Random.Range(0, 4)], this.gameObject.transform.position, this.gameObject.transform.rotation);
             }
             Destroy(this.gameObject);
+            player.GetComponent<PlayerMove>().Score++;
         }
     }
 

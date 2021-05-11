@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class PlayerMove : MonoBehaviour
 {
     public int HP = 50;
+    public int Score = 0;
     public float _moveSpeed = 10f;
     private float _jumpSpeed = 500f;
     private float _jumpHeight = 6f;
@@ -116,10 +117,15 @@ public class PlayerMove : MonoBehaviour
     //}
     private IEnumerator CheckForLoss()
     {
-        if (HP <= 0)
+        if (HP <= 0 && Score < 10)
         {
             yield return new WaitForEndOfFrame();
             SceneManager.LoadScene(2);
+        }
+        else if (HP <= 0 && Score >= 0)
+        {
+            yield return new WaitForEndOfFrame();
+            SceneManager.LoadScene(3);
         }
     }
 }
