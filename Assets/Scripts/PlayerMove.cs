@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
@@ -19,6 +20,10 @@ public class PlayerMove : MonoBehaviour
     private Rigidbody _rb;
     private MaterialsManager _matManager;
     public GameObject _protectionSphere;
+
+
+    //UI
+    
 
     #region Unity
     void Start()
@@ -128,4 +133,5 @@ public class PlayerMove : MonoBehaviour
             SceneManager.LoadScene(3);
         }
     }
+    
 }

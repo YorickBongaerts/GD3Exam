@@ -49,6 +49,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""StartButton"",
+                    ""type"": ""Button"",
+                    ""id"": ""0078e71a-5867-42fc-bedc-d4447a685aea"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -139,6 +147,17 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""action"": ""EarthPower"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d1e70132-d9ab-478e-bfdd-f2641e9d9ff4"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""StartButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -197,6 +216,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_PlayerMap_Jump = m_PlayerMap.FindAction("Jump", throwIfNotFound: true);
         m_PlayerMap_Shoot = m_PlayerMap.FindAction("Shoot", throwIfNotFound: true);
         m_PlayerMap_EarthPower = m_PlayerMap.FindAction("EarthPower", throwIfNotFound: true);
+        m_PlayerMap_StartButton = m_PlayerMap.FindAction("StartButton", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Move = m_UI.FindAction("Move", throwIfNotFound: true);
@@ -254,6 +274,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_PlayerMap_Jump;
     private readonly InputAction m_PlayerMap_Shoot;
     private readonly InputAction m_PlayerMap_EarthPower;
+    private readonly InputAction m_PlayerMap_StartButton;
     public struct PlayerMapActions
     {
         private @PlayerControls m_Wrapper;
@@ -262,6 +283,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @Jump => m_Wrapper.m_PlayerMap_Jump;
         public InputAction @Shoot => m_Wrapper.m_PlayerMap_Shoot;
         public InputAction @EarthPower => m_Wrapper.m_PlayerMap_EarthPower;
+        public InputAction @StartButton => m_Wrapper.m_PlayerMap_StartButton;
         public InputActionMap Get() { return m_Wrapper.m_PlayerMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -283,6 +305,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @EarthPower.started -= m_Wrapper.m_PlayerMapActionsCallbackInterface.OnEarthPower;
                 @EarthPower.performed -= m_Wrapper.m_PlayerMapActionsCallbackInterface.OnEarthPower;
                 @EarthPower.canceled -= m_Wrapper.m_PlayerMapActionsCallbackInterface.OnEarthPower;
+                @StartButton.started -= m_Wrapper.m_PlayerMapActionsCallbackInterface.OnStartButton;
+                @StartButton.performed -= m_Wrapper.m_PlayerMapActionsCallbackInterface.OnStartButton;
+                @StartButton.canceled -= m_Wrapper.m_PlayerMapActionsCallbackInterface.OnStartButton;
             }
             m_Wrapper.m_PlayerMapActionsCallbackInterface = instance;
             if (instance != null)
@@ -299,6 +324,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @EarthPower.started += instance.OnEarthPower;
                 @EarthPower.performed += instance.OnEarthPower;
                 @EarthPower.canceled += instance.OnEarthPower;
+                @StartButton.started += instance.OnStartButton;
+                @StartButton.performed += instance.OnStartButton;
+                @StartButton.canceled += instance.OnStartButton;
             }
         }
     }
@@ -350,6 +378,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
         void OnEarthPower(InputAction.CallbackContext context);
+        void OnStartButton(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
