@@ -19,7 +19,7 @@ public class BaseEnemyBehaviour : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         agent.SetDestination(player.transform.position);
 

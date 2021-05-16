@@ -10,12 +10,6 @@ public class EnemyShoot : MonoBehaviour
         player = FindObjectOfType<PlayerMove>().gameObject;
         InvokeRepeating("Shoot", 1f, 1f);
     }
-
-    void Update()
-    {
-        //Shoot();
-    }
-    
     void Shoot()
     {
         var go = ObjectPooler.Instance.SpawnFromPool("Bullets", gameObject.transform.position, Quaternion.Euler(90,gameObject.transform.rotation.eulerAngles.y,0));

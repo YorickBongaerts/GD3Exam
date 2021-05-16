@@ -10,7 +10,7 @@ public class EnemySpawnerScript : MonoBehaviour
     public Material[] enemyMaterials = new Material[4];
     public Bounds[] spawnerBounds = new Bounds[4];
 
-    void Update()
+    void FixedUpdate()
     {
         if (amountOfEnemies < enemyMax)
         {

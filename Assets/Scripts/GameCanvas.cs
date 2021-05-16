@@ -3,30 +3,47 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class GameCanvas : MonoBehaviour
 {
     [SerializeField] private GameObject Overlay, Pause, Options;
 
-    [SerializeField] private GameObject ResumeButton;
-    public void OnResume(InputAction.CallbackContext context)
+    [SerializeField] private GameObject ResumeButton, BackButton;
+
+    [SerializeField] private EventSystem eventSystem;
+    private void Start()
+    {
+    }
+    public void OnResume()
     {
         Overlay.SetActive(true);
         Pause.SetActive(false);
-        if (Overlay.activeSelf)
-        {
             Time.timeScale = 1;
-            EventSystem.current.SetSelectedGameObject(null);
-        }
+            eventSystem.SetSelectedGameObject(null);
     }
     public void OnPause(InputAction.CallbackContext context)
     {
         Overlay.SetActive(false);
         Pause.SetActive(true);
-        if (Overlay.activeSelf)
-        {
             Time.timeScale = 0;
-            EventSystem.current.SetSelectedGameObject(ResumeButton);
-        }
+            eventSystem.SetSelectedGameObject(ResumeButton);
+    }
+    public void OnOptionsClick()
+    {
+        Options.SetActive(true);
+        Pause.SetActive(false);
+        eventSystem.SetSelectedGameObject(BackButton);
+    }
+    public void OnBackClick()
+    {
+        Options.SetActive(false);
+        Pause.SetActive(true);
+            eventSystem.SetSelectedGameObject(ResumeButton);
+
+    }
+    public void OnQuit()
+    {
+        Application.Quit();
     }
 }
