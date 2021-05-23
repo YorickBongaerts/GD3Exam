@@ -30,8 +30,8 @@ public class BaseEnemyBehaviour : MonoBehaviour
             {
                 Instantiate(PowerUps[UnityEngine.Random.Range(0, 4)], this.gameObject.transform.position, this.gameObject.transform.rotation);
             }
+            ScoreSystem.AddPoints(gameObject.transform.GetChild(0).GetComponent<MeshRenderer>().material);
             Destroy(this.gameObject);
-            player.GetComponent<PlayerMove>().Score++;
         }
     }
 
@@ -40,7 +40,7 @@ public class BaseEnemyBehaviour : MonoBehaviour
         if (ObjectPooler.Instance.poolDictionary["Bullets"].Contains(other.gameObject))
         {
             HP--;
-            if (other.GetComponent<MeshRenderer>().material.name == gameObject.GetComponent<MeshRenderer>().material.name)
+            if (other.GetComponent<MeshRenderer>().material.name == gameObject.transform.GetChild(0).GetComponent<MeshRenderer>().material.name)
             {
                 HP--;
             }

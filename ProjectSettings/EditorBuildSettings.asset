@@ -12,6 +12,12 @@ EditorBuildSettings:
     path: Assets/Scenes/bulletheaven_GameScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/Scenes/bulletheaven_Loss.unity
+    path: Assets/Scenes/bulletheaven_Heaven.unity
+    guid: 6835dde32bb219149b1a3cb2b8f37780
+  - enabled: 1
+    path: Assets/Scenes/bulletheaven_Hell.unity
     guid: db53d5ee39ee7db44a78588bc7c96b54
+  - enabled: 1
+    path: Assets/Scenes/bulletheaven_Purgatory.unity
+    guid: ea8bcc1c67d6252438a20d3a232b1550
   m_configObjects: {}
