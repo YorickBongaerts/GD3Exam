@@ -3,10 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class MaterialsManager : MonoBehaviour
 {
     [SerializeField] private PlayerMove player;
+    [SerializeField] private GameCanvas gameCanvas;
     public bool ShouldSwap;
     public Material SwapToMaterial;
     public GameObject SwapToObject;
@@ -67,6 +69,7 @@ public class MaterialsManager : MonoBehaviour
         }
         _collectedPowers[_pressedButton - 1] = SwapToObject;
         _bulletMaterials[_pressedButton - 1] = SwapToMaterial;
+        gameCanvas.PowerUpUICollection[_pressedButton - 1].GetComponent<Image>().color = SwapToMaterial.color;
         SwapToMaterial = null;
         SwapToObject = null;
         _pressedButton = 0;

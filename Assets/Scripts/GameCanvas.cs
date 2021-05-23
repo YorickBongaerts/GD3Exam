@@ -12,6 +12,8 @@ public class GameCanvas : MonoBehaviour
     [SerializeField] private GameObject ResumeButton, BackButton;
 
     [SerializeField] private EventSystem eventSystem;
+
+    public GameObject[] PowerUpUICollection = new GameObject[8];
     private void Start()
     {
     }

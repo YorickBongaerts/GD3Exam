@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 861396571085433329}
   - component: {fileID: 1703249787183173234}
   - component: {fileID: 3140132888413559405}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,8 +92,8 @@ GameObject:
   - component: {fileID: 8141975305657762395}
   - component: {fileID: 8141975305657762372}
   - component: {fileID: 8141975305657762373}
-  m_Layer: 0
-  m_Name: Angel
+  m_Layer: 10
+  m_Name: AngelWalking
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

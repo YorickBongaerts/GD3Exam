@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public static class ScoreSystem
 {
@@ -34,5 +35,10 @@ public static class ScoreSystem
         {
             score += 100;
         }
+    }
+
+    public static void UpdateUI(Text scoreText)
+    {
+        scoreText.text = score.ToString();
     }
 }

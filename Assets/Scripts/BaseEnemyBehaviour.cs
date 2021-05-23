@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class BaseEnemyBehaviour : MonoBehaviour
 {
@@ -10,12 +11,14 @@ public class BaseEnemyBehaviour : MonoBehaviour
     private EnemySpawnerScript spawner;
     public GameObject[] PowerUps = new GameObject[4];
     [SerializeField] private GameObject player;
+    private GameObject overlayPanel;
     // Start is called before the first frame update
     void Start()
     {
         agent = gameObject.GetComponent<NavMeshAgent>();
         player = FindObjectOfType<PlayerMove>().gameObject;
         spawner = FindObjectOfType<EnemySpawnerScript>();
+        overlayPanel = FindObjectOfType<GameCanvas>().transform.GetChild(2).gameObject;
     }
 
     // Update is called once per frame
@@ -31,6 +34,7 @@ public class BaseEnemyBehaviour : MonoBehaviour
                 Instantiate(PowerUps[UnityEngine.Random.Range(0, 4)], this.gameObject.transform.position, this.gameObject.transform.rotation);
             }
             ScoreSystem.AddPoints(gameObject.transform.GetChild(0).GetComponent<MeshRenderer>().material);
+            ScoreSystem.UpdateUI(overlayPanel.transform.GetChild(0).GetComponent<Text>());
             Destroy(this.gameObject);
         }
     }

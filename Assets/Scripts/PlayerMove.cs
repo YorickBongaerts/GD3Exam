@@ -72,7 +72,7 @@ public class PlayerMove : MonoBehaviour
         {
             foreach (GameObject power in _matManager._collectedPowers)
             {
-                if (power != null && power.GetComponent<MeshRenderer>().sharedMaterial.name == "MAT_White (Instance)")
+                if (power != null && power.GetComponent<MeshRenderer>().sharedMaterial.color == new Color(1,1,1,1))
                 {
                     _rb.velocity = new Vector3(0, 1, 0);
                     GravityManager.ChangeGravity(-2f);
@@ -89,7 +89,7 @@ public class PlayerMove : MonoBehaviour
             {
                 power.GetComponent<BrownPowerupScript>().ApplyExtraPower();
             }
-            if (power != null && power.GetComponent<MeshRenderer>().sharedMaterial.name == "MAT_Blue (Instance)" && _matManager.CanUseBlue)
+            if (power != null && power.GetComponent<MeshRenderer>().sharedMaterial.color == new Color(0,0,1,1) && _matManager.CanUseBlue)
             {
                 if (_matManager.CanUseBlue)
                 {
