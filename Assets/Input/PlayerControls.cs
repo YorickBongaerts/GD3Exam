@@ -27,6 +27,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
+                    ""name"": ""ChoosePowerSide"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""60e16aca-db07-40ae-a80f-2e8726e4c575"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
                     ""name"": ""Jump"",
                     ""type"": ""Button"",
                     ""id"": ""0508fd3e-8164-4089-a92d-4097f3f882cd"",
@@ -158,6 +166,61 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""action"": ""StartButton"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""efa93706-f572-407d-aecc-37ea5e84b79e"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChoosePowerSide"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""409f5d53-e37c-4df3-ad71-dc99401e0f02"",
+                    ""path"": ""<Gamepad>/rightStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChoosePowerSide"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""cb11f79d-83bb-483b-bd65-c50203faa4e8"",
+                    ""path"": ""<Gamepad>/rightStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChoosePowerSide"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""81a64c8c-6d01-4405-a991-240ead188fca"",
+                    ""path"": ""<Gamepad>/rightStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChoosePowerSide"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""3e8265b8-a956-4503-829d-6238329d897f"",
+                    ""path"": ""<Gamepad>/rightStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChoosePowerSide"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -213,6 +276,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         // PlayerMap
         m_PlayerMap = asset.FindActionMap("PlayerMap", throwIfNotFound: true);
         m_PlayerMap_Walking = m_PlayerMap.FindAction("Walking", throwIfNotFound: true);
+        m_PlayerMap_ChoosePowerSide = m_PlayerMap.FindAction("ChoosePowerSide", throwIfNotFound: true);
         m_PlayerMap_Jump = m_PlayerMap.FindAction("Jump", throwIfNotFound: true);
         m_PlayerMap_Shoot = m_PlayerMap.FindAction("Shoot", throwIfNotFound: true);
         m_PlayerMap_EarthPower = m_PlayerMap.FindAction("EarthPower", throwIfNotFound: true);
@@ -271,6 +335,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputActionMap m_PlayerMap;
     private IPlayerMapActions m_PlayerMapActionsCallbackInterface;
     private readonly InputAction m_PlayerMap_Walking;
+    private readonly InputAction m_PlayerMap_ChoosePowerSide;
     private readonly InputAction m_PlayerMap_Jump;
     private readonly InputAction m_PlayerMap_Shoot;
     private readonly InputAction m_PlayerMap_EarthPower;
@@ -280,6 +345,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         private @PlayerControls m_Wrapper;
         public PlayerMapActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Walking => m_Wrapper.m_PlayerMap_Walking;
+        public InputAction @ChoosePowerSide => m_Wrapper.m_PlayerMap_ChoosePowerSide;
         public InputAction @Jump => m_Wrapper.m_PlayerMap_Jump;
         public InputAction @Shoot => m_Wrapper.m_PlayerMap_Shoot;
         public InputAction @EarthPower => m_Wrapper.m_PlayerMap_EarthPower;
@@ -296,6 +362,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Walking.started -= m_Wrapper.m_PlayerMapActionsCallbackInterface.OnWalking;
                 @Walking.performed -= m_Wrapper.m_PlayerMapActionsCallbackInterface.OnWalking;
                 @Walking.canceled -= m_Wrapper.m_PlayerMapActionsCallbackInterface.OnWalking;
+                @ChoosePowerSide.started -= m_Wrapper.m_PlayerMapActionsCallbackInterface.OnChoosePowerSide;
+                @ChoosePowerSide.performed -= m_Wrapper.m_PlayerMapActionsCallbackInterface.OnChoosePowerSide;
+                @ChoosePowerSide.canceled -= m_Wrapper.m_PlayerMapActionsCallbackInterface.OnChoosePowerSide;
                 @Jump.started -= m_Wrapper.m_PlayerMapActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_PlayerMapActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_PlayerMapActionsCallbackInterface.OnJump;
@@ -315,6 +384,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Walking.started += instance.OnWalking;
                 @Walking.performed += instance.OnWalking;
                 @Walking.canceled += instance.OnWalking;
+                @ChoosePowerSide.started += instance.OnChoosePowerSide;
+                @ChoosePowerSide.performed += instance.OnChoosePowerSide;
+                @ChoosePowerSide.canceled += instance.OnChoosePowerSide;
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
@@ -375,6 +447,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     public interface IPlayerMapActions
     {
         void OnWalking(InputAction.CallbackContext context);
+        void OnChoosePowerSide(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
         void OnEarthPower(InputAction.CallbackContext context);

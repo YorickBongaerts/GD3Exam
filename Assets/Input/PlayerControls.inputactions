@@ -14,6 +14,14 @@
                     "interactions": ""
                 },
                 {
+                    "name": "ChoosePowerSide",
+                    "type": "PassThrough",
+                    "id": "60e16aca-db07-40ae-a80f-2e8726e4c575",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
                     "name": "Jump",
                     "type": "Button",
                     "id": "0508fd3e-8164-4089-a92d-4097f3f882cd",
@@ -145,6 +153,61 @@
                     "action": "StartButton",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "2D Vector",
+                    "id": "efa93706-f572-407d-aecc-37ea5e84b79e",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChoosePowerSide",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "409f5d53-e37c-4df3-ad71-dc99401e0f02",
+                    "path": "<Gamepad>/rightStick/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChoosePowerSide",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "cb11f79d-83bb-483b-bd65-c50203faa4e8",
+                    "path": "<Gamepad>/rightStick/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChoosePowerSide",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "81a64c8c-6d01-4405-a991-240ead188fca",
+                    "path": "<Gamepad>/rightStick/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChoosePowerSide",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "3e8265b8-a956-4503-829d-6238329d897f",
+                    "path": "<Gamepad>/rightStick/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChoosePowerSide",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         },

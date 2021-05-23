@@ -27,6 +27,7 @@ public class PowerUpBase : MonoBehaviour
             matManager.SwapToMaterial = this.gameObject.GetComponent<MeshRenderer>().material;
             matManager.ShouldSwap = true;
             ApplyExtraPower();
+            Time.timeScale = 0;
             gameObject.SetActive(false);
         }
     }

@@ -18,40 +18,16 @@ public class MaterialsManager : MonoBehaviour
     public int BrownUses = 0;
     public int MaxBlueTime = 2;
     public bool CanUseBlue;
-    private void Update()
+    private float DistanceToClosestPoint = 100;
+    private GameObject ClosestPoint;
+    public void OnInput(InputAction.CallbackContext context)
     {
-        SwapInput();
+        Debug.Log(context.ReadValue<Vector2>());
     }
     void SwapInput()
     {
         if (!ShouldSwap)
             return;
-
-        Time.timeScale = 0;
-
-        if (Keyboard.current.numpad1Key.wasPressedThisFrame)
-            _pressedButton = 1;
-
-        if (Keyboard.current.numpad2Key.wasPressedThisFrame)
-            _pressedButton = 2;
-
-        if (Keyboard.current.numpad3Key.wasPressedThisFrame)
-            _pressedButton = 3;
-
-        if (Keyboard.current.numpad4Key.wasPressedThisFrame)
-            _pressedButton = 4;
-
-        if (Keyboard.current.numpad5Key.wasPressedThisFrame)
-            _pressedButton = 5;
-
-        if (Keyboard.current.numpad6Key.wasPressedThisFrame)
-            _pressedButton = 6;
-
-        if (Keyboard.current.numpad7Key.wasPressedThisFrame)
-            _pressedButton = 7;
-
-        if (Keyboard.current.numpad8Key.wasPressedThisFrame)
-            _pressedButton = 8;
 
         if (_pressedButton != 0)
         {
@@ -120,5 +96,37 @@ public class MaterialsManager : MonoBehaviour
             yield return null;
         }
         yield return null;
+    }
+    public void OnRightStickInput(InputAction.CallbackContext context)
+    {
+        if (!ShouldSwap)
+            return;
+
+        Vector2 input = context.ReadValue<Vector2>();
+        //Debug.Log(input + "raw");
+        input = input.normalized;
+        //Debug.Log(input + "normalized");
+        if (input.x == 0 && input.y == 0)
+            return;
+        _pressedButton = gameCanvas.PowerUpUICollection.IndexOf(CheckClosestPoint(input)) + 1;
+        SwapInput();
+    }
+
+    private GameObject CheckClosestPoint(Vector2 input)
+    {
+        DistanceToClosestPoint = 100;
+        ClosestPoint = null;
+        //Debug.Log(input);
+        foreach (GameObject point in gameCanvas.PowerUpUICollection)
+        {
+            Vector2 normalizedLocalPointPosition = point.transform.GetComponent<RectTransform>().localPosition.normalized;
+            float distance = new Vector2(normalizedLocalPointPosition.x - input.x, normalizedLocalPointPosition.y - input.y).magnitude;
+            if (distance < DistanceToClosestPoint)
+            {
+                DistanceToClosestPoint = distance;
+                ClosestPoint = point;
+            }
+        }
+        return ClosestPoint;
     }
 }

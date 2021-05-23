@@ -13,7 +13,7 @@ public class GameCanvas : MonoBehaviour
 
     [SerializeField] private EventSystem eventSystem;
 
-    public GameObject[] PowerUpUICollection = new GameObject[8];
+    public List<GameObject> PowerUpUICollection = new List<GameObject>();
     private void Start()
     {
     }
