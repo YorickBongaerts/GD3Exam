@@ -9,6 +9,7 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField] private GameObject Bullet;
     public void OnShoot(InputAction.CallbackContext context)
     {
+        this.gameObject.GetComponent<PlayerMove>().animator.Play("Shoot");
         Shoot();
     }
     void Shoot()

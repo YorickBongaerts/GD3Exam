@@ -22,6 +22,7 @@ public class BrownPowerupScript : PowerUpBase
             matManager.SwapToMaterial = this.gameObject.GetComponent<MeshRenderer>().material;
             matManager.ShouldSwap = true;
             matManager.BrownUses++;
+            Time.timeScale = 0;
             gameObject.SetActive(false);
         }
     }

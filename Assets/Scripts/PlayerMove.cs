@@ -19,6 +19,7 @@ public class PlayerMove : MonoBehaviour
     private Rigidbody _rb;
     private MaterialsManager _matManager;
     public GameObject _protectionSphere;
+    public Animator animator;
 
 
     //UI
@@ -66,6 +67,8 @@ public class PlayerMove : MonoBehaviour
     {
         if (!_isJumping)
         {
+            animator.SetFloat("WalkingSpeed", 0);
+            animator.Play("Jump");
             Jump();
         }
         else if (_isJumping && !LoweredGravity)
@@ -104,6 +107,11 @@ public class PlayerMove : MonoBehaviour
     void Move()
     {
         _rb.AddForce(_moveDirection.normalized * _moveSpeed, ForceMode.Acceleration);
+        if (!_isJumping)
+        {
+            animator.SetFloat("WalkingSpeed", _rb.velocity.magnitude);
+            Debug.Log(_rb.velocity.magnitude);
+        }
     }
     void Jump()
     {

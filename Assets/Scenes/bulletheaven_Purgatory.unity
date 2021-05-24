@@ -310,6 +310,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startMenu: {fileID: 0}
   _startOptionsMenu: {fileID: 0}
+  _resumeButton: {fileID: 0}
+  _startButton: {fileID: 0}
+  scoreText: {fileID: 1410670493}
 --- !u!1 &876951518
 GameObject:
   m_ObjectHideFlags: 0
@@ -559,12 +562,12 @@ PrefabInstance:
     - target: {fileID: 8958610969814613371, guid: 16ae6499f61619047896a9483a63e923,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 100
+      value: 632.8
       objectReference: {fileID: 0}
     - target: {fileID: 8958610969814613371, guid: 16ae6499f61619047896a9483a63e923,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 100
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 8958610969814613371, guid: 16ae6499f61619047896a9483a63e923,
         type: 3}
@@ -637,6 +640,12 @@ GameObject:
 --- !u!224 &1410670492 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8958610969814613371, guid: 16ae6499f61619047896a9483a63e923,
+    type: 3}
+  m_PrefabInstance: {fileID: 1410670490}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1410670493 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1650665703, guid: 16ae6499f61619047896a9483a63e923,
     type: 3}
   m_PrefabInstance: {fileID: 1410670490}
   m_PrefabAsset: {fileID: 0}

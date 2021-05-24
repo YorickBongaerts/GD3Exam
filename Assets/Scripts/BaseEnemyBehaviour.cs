@@ -49,6 +49,10 @@ public class BaseEnemyBehaviour : MonoBehaviour
                 HP--;
             }
         }
+        if (other.gameObject == player.gameObject)
+        {
+            player.GetComponent<PlayerMove>().HP--;
+        }
     }
     private void OnCollisionEnter(Collision collision)
     {

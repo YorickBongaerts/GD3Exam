@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6819043569655010030}
   - component: {fileID: 6819043569655010031}
   - component: {fileID: 6819043569655010028}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: EarthPowerCube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
