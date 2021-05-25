@@ -12,16 +12,16 @@ public static class ScoreSystem
         if (score > 0)
         {
             yield return new WaitForEndOfFrame();
-            SceneManager.LoadScene(3);
+            SceneManager.LoadScene("bulletheaven_Hell");
         }
         else if (score < 0)
         {
             yield return new WaitForEndOfFrame();
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene("bulletheaven_Heaven");
         }
         else
         {
-            SceneManager.LoadScene(4);
+            SceneManager.LoadScene("bulletheaven_Purgatory");
             yield return null;
         }
     }

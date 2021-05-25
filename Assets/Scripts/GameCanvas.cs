@@ -13,9 +13,12 @@ public class GameCanvas : MonoBehaviour
 
     [SerializeField] private EventSystem eventSystem;
 
+    [SerializeField] private SoundManager SoundManager;
+
     public List<GameObject> PowerUpUICollection = new List<GameObject>();
     private void Start()
     {
+        SoundManager.PlayGameBgm();
     }
     public void OnResume()
     {

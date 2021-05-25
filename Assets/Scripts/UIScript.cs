@@ -7,10 +7,10 @@ public class UIScript : MonoBehaviour
 {
     public void OnRetry()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("bulletheaven_GameScene");
     }
     public void OnQuit()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("bulletheaven_info");
     }
 }
