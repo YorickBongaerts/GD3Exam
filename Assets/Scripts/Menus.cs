@@ -57,6 +57,9 @@ public class Menus : MonoBehaviour
         {
             SoundManager.PlayTitlescreenBgm();
         }
-        scoreText.GetComponent<Text>().text = ScoreSystem.score.ToString();
+        if (scoreText != null)
+        {
+            scoreText.GetComponent<Text>().text = ScoreSystem.score.ToString();
+        }
     }
 }

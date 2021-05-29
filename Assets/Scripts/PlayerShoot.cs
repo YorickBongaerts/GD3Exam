@@ -11,6 +11,7 @@ public class PlayerShoot : MonoBehaviour
     public void OnShoot(InputAction.CallbackContext context)
     {
         this.gameObject.GetComponent<PlayerMove>().animator.Play("Shoot");
+        SoundManager = FindObjectOfType<SoundManager>();
         Shoot();
     }
     void Shoot()
