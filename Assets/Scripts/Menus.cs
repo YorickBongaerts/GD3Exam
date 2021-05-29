@@ -29,7 +29,7 @@ public class Menus : MonoBehaviour
     public void OnQuitClick()
     {
         SoundManager.PlayButtonTap();
-        Application.Quit();
+        SceneManager.LoadScene(0);
     }
     public void OnStartOptionsClick()
     {

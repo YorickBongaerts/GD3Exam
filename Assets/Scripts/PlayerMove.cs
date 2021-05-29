@@ -9,6 +9,8 @@ public class PlayerMove : MonoBehaviour
 {
     public int HP = 50;
     public float _moveSpeed = 10f;
+    private float turnSmoothTime = 0.1f;
+    private float turnSmoothVelocity;
     private float _jumpSpeed = 500f;
     private float _jumpHeight = 6f;
     private float _GroundHeight;
@@ -20,6 +22,7 @@ public class PlayerMove : MonoBehaviour
     private MaterialsManager _matManager;
     public GameObject _protectionSphere;
     public Animator animator;
+    private GameObject _playerModel;
 
 
     //UI
@@ -31,6 +34,7 @@ public class PlayerMove : MonoBehaviour
         _rb = this.gameObject.GetComponent<Rigidbody>();
         _matManager = FindObjectOfType<MaterialsManager>();
         _protectionSphere = gameObject.transform.GetChild(1).gameObject;
+        _playerModel = gameObject.transform.GetChild(0).gameObject;
     }
     void Update()
     {
@@ -62,6 +66,7 @@ public class PlayerMove : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         _moveDirection = new Vector3(context.ReadValue<Vector2>().x, 0, context.ReadValue<Vector2>().y);
+        
     }
     public void OnJump(InputAction.CallbackContext context)
     {
@@ -106,7 +111,14 @@ public class PlayerMove : MonoBehaviour
 
     void Move()
     {
-        _rb.AddForce(_moveDirection.normalized * _moveSpeed, ForceMode.Acceleration);
+        if (_moveDirection.magnitude >= 0.1f)
+        {
+            float targetAngle = Mathf.Atan2(_moveDirection.x, _moveDirection.z) * Mathf.Rad2Deg;
+            float angle = Mathf.SmoothDampAngle(_playerModel.transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+            _playerModel.transform.rotation = Quaternion.Euler(0, angle, 0);
+
+            _rb.AddForce(_moveDirection.normalized * _moveSpeed, ForceMode.Acceleration);
+        }
         if (!_isJumping)
         {
             animator.SetFloat("WalkingSpeed", _rb.velocity.magnitude);
