@@ -24,9 +24,9 @@ public class PlayerMove : MonoBehaviour
     public Animator animator;
     private GameObject _playerModel;
     public Text livesText;
-
+    private ObjectPooler2 pool;
     //UI
-    
+
 
     #region Unity
     void Start()
@@ -35,6 +35,8 @@ public class PlayerMove : MonoBehaviour
         _matManager = FindObjectOfType<MaterialsManager>();
         _protectionSphere = gameObject.transform.GetChild(1).gameObject;
         _playerModel = gameObject.transform.GetChild(0).gameObject;
+        pool = FindObjectOfType<ObjectPooler2>();
+        livesText.text = HP.ToString();
     }
     void Update()
     {
@@ -49,7 +51,8 @@ public class PlayerMove : MonoBehaviour
             _isGrounded = true;
             _isJumping = false;
         }
-        if (ObjectPooler.Instance.poolDictionary["Bullets"].Contains(other.gameObject))
+        //if (ObjectPooler.Instance.poolDictionary["Bullets"].Contains(other.gameObject))
+        if (pool.ShootingBullet.Contains(other.gameObject))
         {
             HP--;
             livesText.text = HP.ToString();

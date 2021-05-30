@@ -10,8 +10,9 @@ public class BaseEnemyBehaviour : MonoBehaviour
     private NavMeshAgent agent;
     private EnemySpawnerScript spawner;
     public GameObject[] PowerUps = new GameObject[4];
-    [SerializeField] private GameObject player;
+    private GameObject player;
     private GameObject overlayPanel;
+    private ObjectPooler2 pool;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +20,7 @@ public class BaseEnemyBehaviour : MonoBehaviour
         player = FindObjectOfType<PlayerMove>().gameObject;
         spawner = FindObjectOfType<EnemySpawnerScript>();
         overlayPanel = FindObjectOfType<GameCanvas>().transform.GetChild(2).gameObject;
+        pool = FindObjectOfType<ObjectPooler2>();
     }
 
     // Update is called once per frame
@@ -41,7 +43,8 @@ public class BaseEnemyBehaviour : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (ObjectPooler.Instance.poolDictionary["Bullets"].Contains(other.gameObject))
+        //if (ObjectPooler.Instance.poolDictionary["Bullets"].Contains(other.gameObject))
+        if (pool.ShootingBullet.Contains(other.gameObject))
         {
             HP--;
             if (other.GetComponent<MeshRenderer>().material.name == gameObject.transform.GetChild(0).GetComponent<MeshRenderer>().material.name)
