@@ -4,16 +4,16 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerMove : MonoBehaviour
 {
     public int HP = 50;
     public float _moveSpeed = 10f;
+    private float _jumpSpeed = 500f;
+
     private float turnSmoothTime = 0.1f;
     private float turnSmoothVelocity;
-    private float _jumpSpeed = 500f;
-    private float _jumpHeight = 6f;
-    private float _GroundHeight;
     private bool _isGrounded = true;
     private bool _isJumping = false;
     public bool LoweredGravity = false;
@@ -23,7 +23,7 @@ public class PlayerMove : MonoBehaviour
     public GameObject _protectionSphere;
     public Animator animator;
     private GameObject _playerModel;
-
+    public Text livesText;
 
     //UI
     
@@ -52,6 +52,7 @@ public class PlayerMove : MonoBehaviour
         if (ObjectPooler.Instance.poolDictionary["Bullets"].Contains(other.gameObject))
         {
             HP--;
+            livesText.text = HP.ToString();
             if (HP <= 0)
             {
                 StartCoroutine(ScoreSystem.OnGameOver());
